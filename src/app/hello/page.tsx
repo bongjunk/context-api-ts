@@ -8,8 +8,6 @@ const ContextText = () => {
 
   return (
     <>
-      <p>test</p>
-      <p>test</p>
       <p>{value}</p>
     </>
   );

@@ -1,17 +1,80 @@
 'use client';
 
-import Image from 'next/image';
-import React, { createContext } from 'react';
-import ContextText from './api/page';
-import styles from './page.module.css';
-import { MyContext } from './_hooks/useMyContext';
+// import React, { createContext } from 'react';
+// import { MyContext } from './_hooks/useMyContext';
 
-export default function Home() {
+// export default function Home() {
+//   MyContext.displayName = 'DisplayNameSample';
+//   // Provider는 (하위 Component) 구독 하고 있는 자식 Component 에게 정보 전달
+//   return (
+//     <>
+//       <MyContext.Provider value="Context Text">
+//         <ContextText />
+//       </MyContext.Provider>
+//     </>
+//   );
+// }
+
+import { createContext, useContext, useState } from 'react';
+import styled from 'styled-components';
+import Counter from './counter/page';
+import ContextText from './hello/page';
+
+const ThemeContext = createContext(null);
+
+export default function MyApp() {
+  const [theme, setTheme] = useState('light');
+
+  const BodyStyle = styled.body`
+    color: ${theme === 'light' ? '#000' : '#fff'};
+    background-color: ${theme === 'light' ? '#fff' : '#000'};
+  `;
+
+  console.log('theme', theme);
   return (
-    <>
-      <MyContext.Provider value="Context Text">
+    <BodyStyle>
+      <ThemeContext.Provider value={theme}>
+        <Form />
+        <label>
+          <input
+            type="checkbox"
+            checked={theme === 'dark'}
+            onChange={(e) => {
+              setTheme(e.target.checked ? 'dark' : 'light');
+            }}
+          />
+          Use dark mode
+        </label>
         <ContextText />
-      </MyContext.Provider>
-    </>
+      </ThemeContext.Provider>
+      <Counter />
+    </BodyStyle>
   );
+}
+
+function Form({ children }) {
+  return (
+    <Panel title="Welcome">
+      <Button>Sign up</Button>
+      <Button>Log in</Button>
+      <Button>Test Button</Button>
+    </Panel>
+  );
+}
+
+function Panel({ title, children }) {
+  const theme = useContext(ThemeContext);
+  const className = 'panel-' + theme;
+  return (
+    <section className={className}>
+      <h1>{title}</h1>
+      {children}
+    </section>
+  );
+}
+
+function Button({ children }) {
+  const theme = useContext(ThemeContext);
+  const className = 'button-' + theme;
+  return <button className={className}>{children}</button>;
 }
