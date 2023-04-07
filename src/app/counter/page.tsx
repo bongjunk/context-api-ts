@@ -2,18 +2,19 @@ import { createContext, useState } from 'react';
 import useCountState from '../_hooks/useCountState';
 
 const Value = () => {
-  const [counter] = useCountState();
+  const counter = useCountState();
   return <h1>{counter}</h1>;
 };
 
 const Buttons = () => {
+  const { setCount } = useCountState();
+  // console.log('count', count, 'setCount', setCount);
   // const [, setCounter] = useCountState();
   const increase = () => setCounter((prev) => prev + 1);
   const decrease = () => setCounter((prev) => prev - 1);
   return (
     <>
-      <button onClick={() => decrease()}>-</button>
-      <button onClick={() => increase()}>+</button>
+      <button onClick={decrease}>-</button>
     </>
   );
 };
@@ -33,7 +34,7 @@ const CounterProvider = ({ children }) => {
 const Counter = () => {
   return (
     <>
-      <CounterProvider>
+      <CounterProvider value={10}>
         <div>
           <Value />
           <Buttons />

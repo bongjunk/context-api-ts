@@ -19,6 +19,9 @@ import { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
 import Counter from './counter/page';
 import ContextText from './hello/page';
+import PersonProvider from './context/personProvider';
+import PersonName from './person/personName';
+import PersonAge from './person/personAge';
 
 const ThemeContext = createContext(null);
 
@@ -47,7 +50,10 @@ export default function MyApp() {
         </label>
         <ContextText />
       </ThemeContext.Provider>
-      <Counter />
+      <PersonProvider>
+        <PersonName />
+        <PersonAge />
+      </PersonProvider>
     </BodyStyle>
   );
 }
@@ -78,3 +84,4 @@ function Button({ children }) {
   const className = 'button-' + theme;
   return <button className={className}>{children}</button>;
 }
+// <Counter />
