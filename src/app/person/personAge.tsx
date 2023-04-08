@@ -9,10 +9,11 @@ const PersonAge = () => {
   console.log('data33', data, 'contextDispatch', contextDispatch);
 
   const change = () => {
-    context?.actions.contextDispatch({
-      type: 'SET_AGE',
-      data: '만28',
-    });
+    console.log('change');
+    // context?.actions.contextDispatch({
+    //   type: 'SET_AGE',
+    //   data: '만28',
+    // });
   };
 
   return (

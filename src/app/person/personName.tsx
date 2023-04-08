@@ -6,16 +6,18 @@ const PersonName = () => {
   console.log('context', context);
 
   const change = () => {
-    context?.actions.contextDispatch({
-      type: 'SET_NAME',
-      data: '테스트김봉준',
-    });
+    console.log('change');
+    // context?.actions.contextDispatch({
+    //   type: 'SET_NAME',
+    //   data: '테스트김봉준',
+    // });
   };
 
   return (
     <>
       <div>
         <p>{context.state.data.name}</p>
+        <p>{context?.type?.data}</p>
         <button onClick={() => change()}>change</button>
       </div>
     </>
