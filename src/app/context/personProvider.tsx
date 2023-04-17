@@ -3,17 +3,17 @@ import React, { createContext, useReducer } from 'react';
 const SET_NAME = 'SET_NAME';
 const SET_AGE = 'SET_AGE';
 
-interface initDataProps {
+interface InitDataProps {
   name: string;
   age: number;
 }
 
-const initData = {
+const initData: InitDataProps = {
   name: '김봉준',
   age: 30,
 };
 
-export const PersonContext = createContext();
+export const PersonContext = createContext<InitDataProps | null>(null);
 
 const reducer = (state: any, action: any) => {
   console.log('state', state, 'action', action);
@@ -29,6 +29,8 @@ const reducer = (state: any, action: any) => {
         ...state,
         age: action.age,
       };
+    default:
+      return { ...state };
   }
 };
 

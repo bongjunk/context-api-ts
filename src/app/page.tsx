@@ -51,8 +51,10 @@ export default function MyApp() {
         <ContextText />
       </ThemeContext.Provider>
       <PersonProvider>
-        <PersonName />
-        <PersonAge />
+        <div>
+          <PersonName />
+          <PersonAge />
+        </div>
       </PersonProvider>
     </BodyStyle>
   );

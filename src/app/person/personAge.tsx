@@ -8,12 +8,12 @@ const PersonAge = () => {
   console.log('context2', context);
   console.log('data33', data, 'contextDispatch', contextDispatch);
 
-  const change = () => {
-    console.log('change');
-    // context?.actions.contextDispatch({
-    //   type: 'SET_AGE',
-    //   data: '만28',
-    // });
+  const handleChange = () => {
+    console.log('handleChange');
+    context?.actions.contextDispatch({
+      type: 'SET_AGE',
+      age: '만28',
+    });
   };
 
   return (
@@ -21,7 +21,7 @@ const PersonAge = () => {
       <div>
         <p>{context.state.data.age}</p>
         <p>{context?.type?.data}</p>
-        <button onClick={() => change()}>change</button>
+        <button onClick={() => handleChange()}>change</button>
       </div>
     </>
   );
