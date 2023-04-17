@@ -1,11 +1,11 @@
 import { createContext, useContext } from 'react';
 
-interface countProps {
+interface CountProps {
   count: number;
   setCount: any;
 }
 
-export const CounterContext = createContext<countProps>({
+export const CounterContext = createContext<CountProps>({
   count: 0,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setCount: () => {},

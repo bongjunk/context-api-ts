@@ -17,11 +17,12 @@
 
 import { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
-import Counter from './counter/page';
 import ContextText from './hello/page';
 import PersonProvider from './context/personProvider';
 import PersonName from './person/personName';
 import PersonAge from './person/personAge';
+import CounterProvider from './counter/counterProvider';
+import Count from './counter/count';
 
 const ThemeContext = createContext(null);
 
@@ -50,12 +51,17 @@ export default function MyApp() {
         </label>
         <ContextText />
       </ThemeContext.Provider>
+      <h3>이름, 나이 변경</h3>
       <PersonProvider>
         <div>
           <PersonName />
           <PersonAge />
         </div>
       </PersonProvider>
+      <h3>Count</h3>
+      <CounterProvider>
+        <Count />
+      </CounterProvider>
     </BodyStyle>
   );
 }

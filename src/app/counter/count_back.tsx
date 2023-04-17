@@ -7,20 +7,22 @@ const Value = () => {
 };
 
 const Buttons = () => {
-  const { setCount } = useCountState();
+  // const { setCount } = useCountState();
+  const [count, setCount] = useState();
   // console.log('count', count, 'setCount', setCount);
   // const [, setCounter] = useCountState();
   const increase = () => setCounter((prev) => prev + 1);
   const decrease = () => setCounter((prev) => prev - 1);
   return (
     <>
+      <button onClick={increase}>+</button>
       <button onClick={decrease}>-</button>
     </>
   );
 };
 
 // const CounterContext = useCountState();
-const CounterContext = createContext(0);
+const CounterContext = useCountState();
 
 const CounterProvider = ({ children }) => {
   const counterState = useState(1);

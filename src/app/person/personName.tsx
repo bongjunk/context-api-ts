@@ -3,7 +3,6 @@ import { PersonContext } from '../context/personProvider';
 
 const PersonName = () => {
   const context = useContext(PersonContext);
-  console.log('context', context);
 
   const handleChange = () => {
     console.log('handleChange');
